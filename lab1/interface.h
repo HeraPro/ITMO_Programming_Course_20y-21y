@@ -1,6 +1,4 @@
-#ifndef PROGA_1LAB_INTERFACE_H
-#define PROGA_1LAB_INTERFACE_H
-
+#pragma once
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -51,7 +49,7 @@ protected:
 };
 
 
-class ClosedBrokenLine: protected BrokenLine{            //protected(reinterpret cast); public(static cast)     -------
+class ClosedBrokenLine: public BrokenLine{            //protected(reinterpret cast); public(static cast)     -------
 public:
     explicit ClosedBrokenLine(const vector<Point>& tmp); //constructor
     double GetPerimeter() const override;
@@ -77,7 +75,7 @@ public:
 };
 
 
-class Triangle final: protected Polygon{
+class Triangle final: public Polygon{
 public:
     explicit Triangle(const vector<Point>& tmp) : Polygon(tmp) {  //constructor
         if (size != 3) {
@@ -89,7 +87,7 @@ public:
 };
 
 
-class Trapezoid: protected Polygon{
+class Trapezoid: public Polygon{
 public:
     explicit Trapezoid(const vector<Point>& tmp) : Polygon(tmp) {   //constructor
         if (size != 4) {
@@ -110,7 +108,7 @@ public:
 };
 
 
-class RegularPolygon : protected Polygon {
+class RegularPolygon : public Polygon {
 public:
     explicit RegularPolygon(const std::vector<Point>& tmp):Polygon(tmp), side_length(points[0].DistanceBetween(points[1])) {
         for (int i = 1; i < size; ++i) {
@@ -125,5 +123,3 @@ public:
 private:
     double side_length;
 };
-
-#endif //PROGA_1LAB_INTERFACE_H
