@@ -1,48 +1,47 @@
-#ifndef PROGA_LAB2_INTERFACE_H
-#define PROGA_LAB2_INTERFACE_H
-
-#include <iostream>
+#pragma once
+#include <unordered_map>
+#include <string>
 #include <vector>
-#include <algorithm>
-using std::vector, std::pair, std::sort;
+#include <iostream>
 
-bool cmp (const pair<double, int>& a, const pair<double, int>& b);
+using std::string, std::unordered_map, std::vector, std::cout, std::to_string;
 
-class Polynomial{
+class Polynom{
 private:
-vector<pair<double, int>> monomials;  //coefficient, power
+    unsigned size = 0;
+    unordered_map <int, int> polynom;
+    string origin;
 public:
-    Polynomial(const vector<pair<double, int>>& tmp);
-    Polynomial(const double& tmp);
-    Polynomial (const Polynomial& tmp) = default;
-    Polynomial () = default;
-    ~Polynomial() = default;
-    Polynomial& operator = (const Polynomial& tmp) = default;
+    explicit Polynom(string &_polynom);
+    Polynom() = default;
+    void get_polynom();
+//    Polynom &operator = (const Polynom &tmp);
+    Polynom &operator = (string);
 
-    Polynomial& operator += (const Polynomial& tmp);
-    Polynomial& operator -= (const Polynomial& tmp);
-    Polynomial& operator *= (const Polynomial& factor);
-    Polynomial& operator /= (const double& divider);
+    bool operator == (const Polynom &tmp) const; //bool?
+    bool operator != (const Polynom &tmp) const;
 
-    bool operator == (const Polynomial& tmp) const;
-    bool operator != (const Polynomial& tmp) const;
+    Polynom &operator += (const Polynom &tmp);
+    Polynom &operator -= (const Polynom &tmp);
+    Polynom &operator *= (const Polynom &tmp);
+    Polynom &operator /= (const int &tmp);
 
-    const Polynomial operator - () const;
-    const Polynomial operator / (const double& divider) const;
+    Polynom &operator + (const Polynom &tmp) const;
+    Polynom &operator - (const Polynom &tmp) const;
+    Polynom &operator * (const Polynom &tmp) const;
+    Polynom &operator / (const int &tmp) const;
 
-    pair<double, int>& operator [] (int index);
-    pair<double, int> operator [] (int index) const;
+//    Polynom &operator ()++;
+//    Polynom &operator ()--;
+//    Polynom &operator ++();
+//    Polynom &operator --();
+    Polynom &operator - ();
 
-    friend std::ostream& operator << (std::ostream& out, const Polynomial& tmp);
+    Polynom &operator >> (Polynom &tmp);
+    Polynom &operator << (const Polynom &tmp);
+    int &operator [] (int i);
+    ~Polynom() = default;
+protected:
+    static void count_numbers(char *&ptr, int &input, int &i);
+    void parser(string &tmp);
 };
-
-const Polynomial operator + (const Polynomial& tmp1, const Polynomial& tmp2);
-const Polynomial operator - (const Polynomial& tmp1, const Polynomial& tmp2);
-const Polynomial operator * (const Polynomial& tmp1, const Polynomial& tmp2);
-std::istream& operator >> (std::istream& in, Polynomial& tmp);
-std::ostream& operator << (std::ostream& out, const Polynomial& tmp);
-std::ostream& operator << (std::ostream& out, const pair<double, int>& tmp);
-
-
-
-#endif

@@ -63,10 +63,10 @@ RM = /home/hera/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.7717.62/bin/c
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hera/CLionProjects/lab2
+CMAKE_SOURCE_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hera/CLionProjects/lab2/cmake-build-debug
+CMAKE_BINARY_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/lab2.dir/depend.make
@@ -79,29 +79,29 @@ include CMakeFiles/lab2.dir/flags.make
 
 CMakeFiles/lab2.dir/main.cpp.o: CMakeFiles/lab2.dir/flags.make
 CMakeFiles/lab2.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hera/CLionProjects/lab2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab2.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lab2.dir/main.cpp.o -c /home/hera/CLionProjects/lab2/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab2.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lab2.dir/main.cpp.o -c /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/main.cpp
 
 CMakeFiles/lab2.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab2.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hera/CLionProjects/lab2/main.cpp > CMakeFiles/lab2.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/main.cpp > CMakeFiles/lab2.dir/main.cpp.i
 
 CMakeFiles/lab2.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab2.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hera/CLionProjects/lab2/main.cpp -o CMakeFiles/lab2.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/main.cpp -o CMakeFiles/lab2.dir/main.cpp.s
 
 CMakeFiles/lab2.dir/realization.cpp.o: CMakeFiles/lab2.dir/flags.make
 CMakeFiles/lab2.dir/realization.cpp.o: ../realization.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hera/CLionProjects/lab2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lab2.dir/realization.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lab2.dir/realization.cpp.o -c /home/hera/CLionProjects/lab2/realization.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lab2.dir/realization.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lab2.dir/realization.cpp.o -c /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/realization.cpp
 
 CMakeFiles/lab2.dir/realization.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab2.dir/realization.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hera/CLionProjects/lab2/realization.cpp > CMakeFiles/lab2.dir/realization.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/realization.cpp > CMakeFiles/lab2.dir/realization.cpp.i
 
 CMakeFiles/lab2.dir/realization.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab2.dir/realization.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hera/CLionProjects/lab2/realization.cpp -o CMakeFiles/lab2.dir/realization.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/realization.cpp -o CMakeFiles/lab2.dir/realization.cpp.s
 
 # Object files for target lab2
 lab2_OBJECTS = \
@@ -115,7 +115,7 @@ lab2: CMakeFiles/lab2.dir/main.cpp.o
 lab2: CMakeFiles/lab2.dir/realization.cpp.o
 lab2: CMakeFiles/lab2.dir/build.make
 lab2: CMakeFiles/lab2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hera/CLionProjects/lab2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable lab2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable lab2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lab2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -128,6 +128,6 @@ CMakeFiles/lab2.dir/clean:
 .PHONY : CMakeFiles/lab2.dir/clean
 
 CMakeFiles/lab2.dir/depend:
-	cd /home/hera/CLionProjects/lab2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hera/CLionProjects/lab2 /home/hera/CLionProjects/lab2 /home/hera/CLionProjects/lab2/cmake-build-debug /home/hera/CLionProjects/lab2/cmake-build-debug /home/hera/CLionProjects/lab2/cmake-build-debug/CMakeFiles/lab2.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2 /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2 /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug/CMakeFiles/lab2.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/lab2.dir/depend
 

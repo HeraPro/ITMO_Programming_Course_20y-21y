@@ -1,232 +1,184 @@
+#pragma once
 #include "interface.h"
-//    Polynomial(const Polynomial& tmp) : monomials(tmp.monomials) {}// copy
-//    Polynomial& operator = (const Polynomial& tmp) {                     //assignment =
-//        monomials = tmp.monomials;
-//        return *this;
-//    }
-bool cmp(const pair<double, int> &a, const pair<double, int> &b) {
-    return a.second > b.second;
+#include <iostream>
+
+Polynom::Polynom(string &_polynom): origin('(' + _polynom + ')'){
+    if (_polynom.length() == 0) return;
+    for (int i = 0; i < _polynom.length(); ++i){
+        if (_polynom[i] == ' ') {
+            _polynom.erase(i, 1);
+            --i;
+        }
+    }
+    size = _polynom.length();
+    parser(_polynom);
+    for (auto &i : polynom)
+        std::cout << i.first << ' ' << i.second << '\n';
+    std::cout << "--------------------" << '\n';
 }
 
-// IN CLASS
-
-Polynomial::Polynomial(const vector<pair<double, int>> &tmp) : monomials(tmp) {   //constructor
-    sort(monomials.begin(), monomials.end(), cmp);
+void Polynom::count_numbers(char *&ptr, int &i, int &input){
+    bool sign = false;
+    if (*ptr == '-'){
+        sign = true;
+        ++i; ++ptr;
+    }
+    else if (*ptr == '+'){
+        ++i; ++ptr;
+    }
+    if (*ptr == 'x'){
+        input = sign == 0 ? 1 : -1;
+        return;
+    }
+    while (*ptr >= '0' && *ptr <= '9'){
+        input = input * 10 + *ptr - '0';
+        ++i; ++ptr;
+    }
+    if (sign){input = -input;}
+}
+void Polynom::parser(string &tmp) {
+    char *ptr = &tmp[0];
+    for (int i = 0; i != size;){
+        int coeff = 0, degree = 0;
+        count_numbers(ptr, i, coeff);
+        if(*ptr == 'x'){
+            ++i; ++ptr;
+            if(*ptr == '^') {
+                ++i; ++ptr;
+                count_numbers(ptr, i, degree);
+                if (coeff == -1 && degree % 2 == 0) coeff = 1;
+                polynom[degree] += coeff;
+                continue;
+            }
+            else{
+                polynom[1] += coeff;
+                ++i; ++ptr;
+                continue;
+            }
+        }
+        if (coeff != 0) polynom[0] += coeff;
+    }
 }
 
-Polynomial::Polynomial(const double &tmp) : monomials(1, {tmp, 0}) {} // constructor from number
+void Polynom::get_polynom(){
+    cout << origin << '\n';
+}
 
-Polynomial &Polynomial::operator+=(const Polynomial &tmp) {                  // +=
-    vector<pair<double, int>> result;
-    int count1 = 0;
-    int count2 = 0;
-    int len1 = this->monomials.size();
-    int len2 = tmp.monomials.size();
-    while (len1 && len2){
-        if (this->monomials[count1].second > tmp.monomials[count2].second){
-            result.emplace_back(this->monomials[count1]);
-            ++count1;
-            --len1;
-        }
-        else if (this->monomials[count1].second < tmp.monomials[count2].second){
-            result.emplace_back(tmp.monomials[count2]);
-            ++count2;
-            --len2;
-        }
-        else {
-            double first_el = this->monomials[count1].first + tmp.monomials[count2].first;
-            int sec_el = this->monomials[count1].second;
-            if (first_el != 0)
-                result.emplace_back(first_el, sec_el);
-            ++count1, ++count2;
-            --len1, --len2;
-        }
-    }
-    if (len1 == 0) {
-        for (int i = count2; i < tmp.monomials.size(); ++i)
-            result.emplace_back(tmp.monomials[i]);
-    }
-    else {
-        for (int i = count1; i < this->monomials.size(); ++i)
-            result.emplace_back(this->monomials[i]);
-    }
-    this->monomials = result;
+//Polynom &Polynom::operator = (const Polynom &tmp){
+//    size = tmp.size;
+//    polynom = tmp.polynom;
+//    origin = tmp.origin;
+//    return *this;
+//}
+
+Polynom &Polynom::operator = (string input){
+    Polynom tmp (input);
+    *this = tmp;
     return *this;
 }
 
-bool Polynomial::operator==(const Polynomial &tmp) const {    // ==
-    return this->monomials == tmp.monomials;
+bool Polynom::operator == (const Polynom &tmp) const{
+    if (size != tmp.size) return false;
+    if (origin == tmp.origin) return true;
+    else if (polynom != tmp.polynom) return false;
+    return true;
 }
 
-bool Polynomial::operator!=(const Polynomial &tmp) const {     // !=
-    return this->monomials != tmp.monomials;
+bool Polynom::operator != (const Polynom &tmp) const{
+    return !operator == (tmp);
 }
 
-const Polynomial Polynomial::operator-() const {      // -(unary)
-    vector<pair<double, int>> result;
-    for (auto i : this->monomials)
-        result.emplace_back(-(i.first), i.second);
-    return Polynomial(result);
-}
-
-Polynomial &Polynomial::operator-=(const Polynomial &tmp) {             // -=
-    vector<pair<double, int>> result;
-    int count1 = 0;
-    int count2 = 0;
-    int len1 = this->monomials.size();
-    int len2 = tmp.monomials.size();
-    while (len1 && len2){
-        if (this->monomials[count1].second > tmp.monomials[count2].second){
-            result.emplace_back(this->monomials[count1]);
-            ++count1;
-            --len1;
-        }
-        else if (this->monomials[count1].second < tmp.monomials[count2].second){
-            result.emplace_back(-(tmp.monomials[count2].first), tmp.monomials[count2].second);
-            ++count2;
-            --len2;
-        }
-        else {
-            double first_el = this->monomials[count1].first - tmp.monomials[count2].first;
-            int sec_el = this->monomials[count1].second;
-            if (first_el != 0)
-                result.emplace_back(first_el, sec_el);
-            ++count1, ++count2;
-            --len1, --len2;
-        }
+Polynom &Polynom::operator += (const Polynom &tmp){
+    origin += tmp.origin;
+    for (auto i : tmp.polynom){
+        polynom[i.first] += i.second;
     }
-    if (len1 == 0) {
-        for (int i = count2; i < tmp.monomials.size(); ++i)
-            result.emplace_back(-(tmp.monomials[count2].first), tmp.monomials[count2].second);
-    }
-    else {
-        for (int i = count1; i < this->monomials.size(); ++i)
-            result.emplace_back(this->monomials[i]);
-    }
-    this->monomials = result;
+    size = polynom.size();
     return *this;
 }
 
-Polynomial &Polynomial::operator*=(const Polynomial &factor) {                      // *
-    vector<pair<double, int>> this_copy = this->monomials;
-    this->monomials = {{0, 0}};
-    if (factor.monomials.size() == 1 && factor.monomials[0].first == 0 && factor.monomials[0].second == 0) return *this;
-    vector<pair<double, int>> partial_product = {{0,0}};
-    for (auto i : factor.monomials){
-        for (auto j : this_copy){
-            partial_product.emplace_back(j.first * i.first, j.second + i.second);
+Polynom &Polynom::operator -= (const Polynom &tmp){
+    origin += " - (" + tmp.origin + ')';
+    for (auto i : tmp.polynom){
+        polynom[i.first] -= i.second;  // not sure about UB
+    }
+    size = polynom.size();
+    return *this;
+}
+
+Polynom &Polynom::operator *= (const Polynom &tmp){  // fixed
+    origin += "(" + tmp.origin + ')';
+    for (auto i : polynom){
+        for (auto j : tmp.polynom){
+            auto swap = 0;
+            swap = i.first + j.first;
+            polynom[i.first] = 0;
+            polynom[swap] = i.second * j.second;
         }
-        *this += partial_product;
-        partial_product.clear();
+    }
+    size = polynom.size();
+    return *this;
+}
+
+Polynom &Polynom::operator /= (const int &tmp){
+    origin += " / " + to_string(tmp);
+    for (auto i : polynom){
+        polynom[i.first] /= tmp;
     }
     return *this;
 }
 
-Polynomial &Polynomial::operator/=(const double &divider) {               // /=
-    if (divider == 0) {
-        std::cout << "cannot be divided by 0";
-        exit(1);
+Polynom &Polynom::operator + (const Polynom &tmp) const{
+    Polynom sum = *this;
+    return sum += tmp;
+}
+
+Polynom &Polynom::operator - (const Polynom &tmp) const{
+    Polynom diff = *this;
+    return diff -= tmp;
+}
+
+Polynom &Polynom::operator * (const Polynom &tmp) const{
+    Polynom multi = *this;
+    return multi *= tmp;
+}
+
+Polynom &Polynom::operator / (const int &tmp) const{
+    Polynom div = *this;
+    return div /= tmp;
+}
+
+//    Polynom &operator ()++;
+
+//    Polynom &operator ()--;
+
+//    Polynom &operator ++();
+
+//    Polynom &operator --();
+
+Polynom &Polynom::operator - (){
+    for (auto i : polynom){
+        polynom[i.first] = -(i.second);
     }
-    for (int i = 0 ; i < this->monomials.size(); ++i)
-        this->monomials[i].first /= divider;
     return *this;
 }
 
-const Polynomial Polynomial::operator/(const double &divider) const {      // /
-    if (divider == 0) {
-        std::cout << "cannot be divided by 0";
-        exit(1);
+Polynom &Polynom::operator >> (Polynom &tmp){
+    for (auto i : polynom){
+        tmp.polynom[i.first] = i.second;
     }
-    Polynomial quotient = *this;
-    return quotient /= divider;
+    return *this;
 }
 
-pair<double, int> &Polynomial::operator[](int index) {             // []
-    return this->monomials[index];
-}
-
-pair<double, int> Polynomial::operator[](int index) const {       // const []
-    return this->monomials[index];
-}
-
-
-// OUT OF CLASS
-
-
-const Polynomial operator+(const Polynomial &tmp1, const Polynomial &tmp2) {  // +
-    Polynomial sum = tmp1;
-    return sum += tmp2;
-}
-
-const Polynomial operator-(const Polynomial &tmp1, const Polynomial &tmp2) {  // -
-    Polynomial difference = tmp1;
-    return difference += tmp2;
-}
-
-const Polynomial operator*(const Polynomial &tmp1, const Polynomial &tmp2) {  // *
-    Polynomial product = tmp1;
-    return product *= tmp2;
-}
-
-std::istream &operator>>(std::istream &in, Polynomial &tmp) {     // >>
-    std::cout << "enter number of monomials x:" << std::endl;
-    int num_of_monomials;
-    while((!(in >> num_of_monomials)) || num_of_monomials < 0) {
-        std::cin.clear();
-        std::cin.ignore(32767, '\n');
-        std::cout << "incorrect data, enter number of monomials again" << std::endl;
-        in >> num_of_monomials;
+Polynom &Polynom::operator << (const Polynom &tmp){
+    for (auto i : tmp.polynom){
+        polynom[i.first] = i.second;
     }
-    std::cout << "enter x pairs of numbers (coefficient, power)" << std::endl;
-    vector<pair<double, int>> monomials;
-    while (num_of_monomials--) {
-        double a;
-        int b;
-        in >> a >> b;
-        if (in.fail()){
-            std::cin.clear();
-            std::cin.ignore(32767, '\n');
-            ++num_of_monomials;
-            std::cout << "incorrect data, enter this pair again" << std::endl;
-            continue;
-        }
-        monomials.emplace_back(a, b);
-    }
-    tmp = monomials;
-    return in;
+    return *this;
 }
 
-std::ostream &operator<<(std::ostream &out, const Polynomial &tmp) {// <<
-    if (tmp.monomials[0].second != 0)
-        out << tmp.monomials[0].first << "x^" << tmp.monomials[0].second;
-    else
-        out << tmp.monomials[0].first;
-    for (int i = 1; i < tmp.monomials.size(); ++i){
-        if (tmp.monomials[i].second != 0) {
-            if (tmp.monomials[i].first > 0)
-                out << " + " << tmp.monomials[i].first << "x^" << tmp.monomials[i].second;
-            else
-                out << " - " << -tmp.monomials[i].first << "x^" << tmp.monomials[i].second;
-        }
-        else {
-            if (tmp.monomials[i].first > 0)
-                out << " + " << tmp.monomials[i].first;
-            else
-                out << " - " << -tmp.monomials[i].first;
-        }
-    }
-    return out;
+int &Polynom::operator [] (const int i){
+    if (polynom[i] != 0) return polynom[i];
+    else cout << "Not found" << '\n';
 }
-
-std::ostream &operator<<(std::ostream &out, const pair<double, int> &tmp) {
-    if (tmp.second != 0)
-        out << tmp.first << "x^" << tmp.second;
-    else
-        out << tmp.first;
-    return out;
-}
-
-
-
-
 

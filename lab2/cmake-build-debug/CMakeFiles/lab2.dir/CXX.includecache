@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/interface.h
+unordered_map
+-
+string
+-
+vector
+-
+iostream
+-
+
+/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/main.cpp
+interface.h
+/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/interface.h
+fstream
+-
+
+/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/realization.cpp
+interface.h
+/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/interface.h
+iostream
+-
+

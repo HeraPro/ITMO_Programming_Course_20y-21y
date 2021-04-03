@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/hera/CLionProjects/lab2/main.cpp" "/home/hera/CLionProjects/lab2/cmake-build-debug/CMakeFiles/lab2.dir/main.cpp.o"
-  "/home/hera/CLionProjects/lab2/realization.cpp" "/home/hera/CLionProjects/lab2/cmake-build-debug/CMakeFiles/lab2.dir/realization.cpp.o"
+  "/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/main.cpp" "/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug/CMakeFiles/lab2.dir/main.cpp.o"
+  "/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/realization.cpp" "/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab2/cmake-build-debug/CMakeFiles/lab2.dir/realization.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
