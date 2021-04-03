@@ -97,15 +97,15 @@ Polynom &Polynom::operator -= (const Polynom &tmp){
 }
 
 Polynom &Polynom::operator *= (const Polynom &tmp){  // fixed
+    Polynom swap;
     for (auto i : polynom){
         for (auto j : tmp.polynom){
-            auto swap = 0;
-            swap = i.first + j.first;
-            polynom[i.first] = 0;
-            polynom[swap] += i.second * j.second;
+            auto degree = 0;
+            degree = i.first + j.first;
+            swap.polynom[degree] += i.second * j.second;
         }
     }
-    return *this;
+    return *this = swap;
 }
 
 Polynom &Polynom::operator /= (const int &tmp){
@@ -151,17 +151,19 @@ Polynom Polynom::operator - (){ // fixed
     return tmp;
 }
 
-std::ostream &operator << (std::ostream &o,const Polynom &tmp){ // fixed
+std::ostream &operator << (std::ostream &out, const Polynom &tmp){ // fixed
     for (auto i: tmp.polynom)
         std::cout << i.first << ' ' << i.second << '\n';
-    return o;
+    return out;
 }
 
 std::istream &operator >> (std::istream &in, Polynom &tmp){ // fixed
     cout << "Enter degree/coeff";
-    int i, k;
+    int k;
+    char i;
     while(std::cin >> i && std::cin >> k)
-        tmp.polynom[i] = k;
+        if (i == '\n') return in;
+        else tmp.polynom[i - '0'] = k;
     return in;
 }
 

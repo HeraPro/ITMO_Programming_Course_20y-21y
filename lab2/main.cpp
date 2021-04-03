@@ -20,5 +20,6 @@ int main(){
     int a;
     a = first[0];
     cout << a << '\n' << check << ' ' << check2 << ' ' << check3;
+    third *= second;
     return 0;
 }
