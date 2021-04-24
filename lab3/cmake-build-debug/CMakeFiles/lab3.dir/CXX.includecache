@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hera/CLionProjects/lab3/interface.h
+pugixml-1.11/src/pugixml.hpp
+/home/hera/CLionProjects/lab3/pugixml-1.11/src/pugixml.hpp
+iostream
+-
+string
+-
+cwchar
+-
+exception
+-
+cstring
+-
+
+/home/hera/CLionProjects/lab3/main.cpp
+interface.h
+/home/hera/CLionProjects/lab3/interface.h
+
+/home/hera/CLionProjects/lab3/pugixml-1.11/src/pugiconfig.hpp
+
+/home/hera/CLionProjects/lab3/pugixml-1.11/src/pugixml.hpp
+pugiconfig.hpp
+/home/hera/CLionProjects/lab3/pugixml-1.11/src/pugiconfig.hpp
+stddef.h
+-
+exception
+-
+iterator
+-
+iosfwd
+-
+string
+-
+
