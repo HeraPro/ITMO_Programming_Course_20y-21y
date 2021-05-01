@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/lab3.dir/main.cpp.o -o lab3 
+/usr/bin/c++ -g CMakeFiles/lab3.dir/main.cpp.o CMakeFiles/lab3.dir/src/pugixml.cpp.o -o lab3 

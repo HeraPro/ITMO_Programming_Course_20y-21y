@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/hera/CLionProjects/lab3/main.cpp" "/home/hera/CLionProjects/lab3/cmake-build-debug/CMakeFiles/lab3.dir/main.cpp.o"
+  "/home/hera/CLionProjects/lab3/src/pugixml.cpp" "/home/hera/CLionProjects/lab3/cmake-build-debug/CMakeFiles/lab3.dir/src/pugixml.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

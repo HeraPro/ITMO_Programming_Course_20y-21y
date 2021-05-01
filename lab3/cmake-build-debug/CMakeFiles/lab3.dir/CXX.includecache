@@ -6,29 +6,27 @@
 
 #IncludeRegexTransform: 
 
-/home/hera/CLionProjects/lab3/interface.h
-pugixml-1.11/src/pugixml.hpp
-/home/hera/CLionProjects/lab3/pugixml-1.11/src/pugixml.hpp
+/home/hera/CLionProjects/lab3/main.cpp
 iostream
+-
+vector
 -
 string
 -
-cwchar
+src/pugixml.hpp
+/home/hera/CLionProjects/lab3/src/pugixml.hpp
+unordered_map
 -
-exception
+cmath
 -
-cstring
+climits
 -
 
-/home/hera/CLionProjects/lab3/main.cpp
-interface.h
-/home/hera/CLionProjects/lab3/interface.h
+/home/hera/CLionProjects/lab3/src/pugiconfig.hpp
 
-/home/hera/CLionProjects/lab3/pugixml-1.11/src/pugiconfig.hpp
-
-/home/hera/CLionProjects/lab3/pugixml-1.11/src/pugixml.hpp
+/home/hera/CLionProjects/lab3/src/pugixml.hpp
 pugiconfig.hpp
-/home/hera/CLionProjects/lab3/pugixml-1.11/src/pugiconfig.hpp
+/home/hera/CLionProjects/lab3/src/pugiconfig.hpp
 stddef.h
 -
 exception

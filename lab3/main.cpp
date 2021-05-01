@@ -1,40 +1,40 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "pugixml-1.11/src/pugixml.hpp"
-#include <map>
+#include "src/pugixml.hpp"
+#include <unordered_map>
 #include <cmath>
 #include <climits>
 
-using std::string, std::vector, std::pair, std::cout, std::endl, std::map;
+using std::string, std::vector, std::pair, std::cout, std::endl, std::unordered_map;
 
 struct Transport_station {
-    string the_official_name;
+    //string the_official_name;
     vector<string> locations;
     vector<string> routes;
     pair<double, double> coordinates;
 };
 
-bool cmp(const pair<string, int>& a, const pair<string, int>& b) {
+bool cmp(const pair<string, int> &a, const pair<string, int> &b) {
     return a.second < b.second;
 }
 
 void RouteWithTheMostStations(vector<Transport_station>& stations_of_one_type_of_transport) {
-    map<string, int> Routes;
-    for (auto one_station : stations_of_one_type_of_transport) {
-        for (auto route : one_station.routes) {
+    unordered_map<string, int> Routes;
+    for (const auto& one_station : stations_of_one_type_of_transport) {
+        for (const auto &route : one_station.routes) {
             Routes.try_emplace(route, 0);
             ++Routes[route];
         }
     }
     auto max_route = max_element(Routes.begin(), Routes.end(), cmp);
-    cout << "Route with the most stations " << max_route->first << "." << endl <<
-    "Route length - " << max_route->second << " stations." << endl;
+    cout << "Route with the most stations " << max_route->first << "." << '\n' <<
+         "Route length - " << max_route->second << " stations." << '\n';
 }
-double ToRadians (double& degree) {
+double ToRadians (double &degree) {
     return degree * M_PI / 180;
 }
-double DistanceBetween2stations(pair<double, double>& first_co, pair<double, double>& second_co) {
+double DistanceBetween2stations(pair<double, double> &first_co, pair<double, double> &second_co) {
     double lat1 = ToRadians(first_co.first);
     double long1 = ToRadians(first_co.second);
     double lat2 = ToRadians(second_co.first);
@@ -45,8 +45,8 @@ double DistanceBetween2stations(pair<double, double>& first_co, pair<double, dou
     ans = 2 * asin(sqrt(ans));
     return ans * 6371;
 }
-double LengthOfTheRouteFromTheGivenPosition(pair<double, double>& given_position,
-                                            vector<pair<double, double>>& all_coordinates) {
+double LengthOfTheRouteFromTheGivenPosition(pair<double, double> &given_position,
+                                            vector<pair<double, double>> &all_coordinates) {
     vector<bool> check(all_coordinates.size(), false);
     int index = find(all_coordinates.begin(), all_coordinates.end(), given_position) - all_coordinates.begin();
     check[index] = true;
@@ -69,67 +69,67 @@ double LengthOfTheRouteFromTheGivenPosition(pair<double, double>& given_position
     }
     return result;
 }
-void TheLongestRoute(vector<Transport_station>& stations_of_one_type_of_transport) {
-    map <string, vector<pair<double, double>>> Coordinates;
-    for (auto one_station : stations_of_one_type_of_transport) {
+void TheLongestRoute(vector<Transport_station> &stations_of_one_type_of_transport) {
+    unordered_map <string, vector<pair<double, double>>> RouteAndCoordinatesOfStationsOfThisRoute;
+    for (const auto &one_station : stations_of_one_type_of_transport) {
         auto one_coordinate = one_station.coordinates;
-        for (auto route : one_station.routes) {
-            Coordinates[route].emplace_back(one_coordinate);
+        for (const auto &route : one_station.routes) {
+            RouteAndCoordinatesOfStationsOfThisRoute[route].emplace_back(one_coordinate);
         }
     }
     double TheLongestRoute = -1;
-    for (auto one_route : Coordinates) {
-        double length = LONG_LONG_MAX;
+    for (auto one_route : RouteAndCoordinatesOfStationsOfThisRoute) {
+        double length = INT_MAX;
         for (auto start_position : one_route.second) {
             length = fmin(length, LengthOfTheRouteFromTheGivenPosition(start_position, one_route.second));
         }
         TheLongestRoute = fmax(TheLongestRoute, length);
     }
-    cout << "The longest route " << TheLongestRoute << " km" << endl;
+    cout << "The longest route " << TheLongestRoute << " km" << '\n';
 }
 
 void StreetWithTheMostStations(vector<Transport_station>& stations_of_one_type_of_transport1,
                                vector<Transport_station>& stations_of_one_type_of_transport2,
                                vector<Transport_station>& stations_of_one_type_of_transport3
-                               ) {
-    map<string, int> Streets;
-    for (auto one_station : stations_of_one_type_of_transport1) {
-        for (auto one_location : one_station.locations) {
-            if (one_location != "") {
+) {
+    unordered_map<string, int> Streets;
+    for (const auto& one_station : stations_of_one_type_of_transport1) {
+        for (const auto& one_location : one_station.locations) {
+            if (!one_location.empty()) {
                 Streets.try_emplace(one_location, 0);
                 ++Streets[one_location];
             }
         }
     }
-    for (auto one_station : stations_of_one_type_of_transport2) {
-        for (auto one_location : one_station.locations) {
-            if (one_location != "") {
+    for (const auto& one_station : stations_of_one_type_of_transport2) {
+        for (const auto& one_location : one_station.locations) {
+            if (!one_location.empty()) {
                 Streets.try_emplace(one_location, 0);
                 ++Streets[one_location];
             }
         }
     }
-    for (auto one_station : stations_of_one_type_of_transport3) {
-        for (auto one_location : one_station.locations) {
-            if (one_location != "") {
+    for (const auto& one_station : stations_of_one_type_of_transport3) {
+        for (const auto& one_location : one_station.locations) {
+            if (!one_location.empty()) {
                 Streets.try_emplace(one_location, 0);
                 ++Streets[one_location];
             }
         }
     }
     auto street_with_max_number = max_element(Streets.begin(), Streets.end(), cmp);
-    cout << "Street with the most stations - " << street_with_max_number->first << "." << endl <<
-    "Number of stations - " << street_with_max_number->second << endl;
+    cout << "Street with the most stations - " << street_with_max_number->first << '\n' <<
+         "Number of stations - " << street_with_max_number->second << '\n';
 }
 
 void GetInformationFromXmlFile (vector<Transport_station>& stations_BUS,
-                           vector<Transport_station>& stations_TROLLEY,
-                           vector<Transport_station>& stations_TRAM) {
+                                vector<Transport_station>& stations_TROLLEY,
+                                vector<Transport_station>& stations_TRAM) {
     pugi::xml_document doc;
     doc.load_file("data.xml");
     for (auto station : doc.first_child().children()) {
 
-        int count = 1;
+        unsigned count = 1;
         Transport_station station_in_question;
         vector<Transport_station>* kind_of_transport;
 
@@ -144,9 +144,9 @@ void GetInformationFromXmlFile (vector<Transport_station>& stations_BUS,
                 else if (type_of_vehicle == "Трамвай")
                     kind_of_transport = &stations_TRAM;
             }
-            else if (count == 5){
+            /*else if (count == 5){
                 station_in_question.the_official_name = specification.child_value();
-            }
+            } */
             else if (count == 6){
                 string one_location = specification.child_value();
                 while (one_location.find(',') != one_location.find('g')) {
@@ -176,7 +176,7 @@ void GetInformationFromXmlFile (vector<Transport_station>& stations_BUS,
                 double  second_coordinate = std::stod(coordinates.substr(sz + 1));
                 station_in_question.coordinates = {first_coordinate, second_coordinate};
             }
-            count++;
+            ++count;
         }
         kind_of_transport->push_back(station_in_question);
     }
@@ -188,26 +188,25 @@ int main() {
     vector<Transport_station> stations_TROLLEY;
     vector<Transport_station> stations_TRAM;
 
-    system("chcp 65001");
     GetInformationFromXmlFile(stations_BUS, stations_TROLLEY, stations_TRAM);
 
-    cout << 1 << endl;
-    cout << "BUS" << endl;
+    cout << "#1" << '\n';
+    cout << "BUS" << '\n';
     RouteWithTheMostStations(stations_BUS);
-    cout << "TROLLEY" << endl;
+    cout << "TROLLEY" << '\n';
     RouteWithTheMostStations(stations_TROLLEY);
-    cout << "TRAM" << endl;
+    cout << "TRAM" << '\n';
     RouteWithTheMostStations(stations_TRAM);
 
-    cout << 2 << endl;
-    cout << "BUS" << endl;
+    cout << "#2" << '\n';
+    cout << "BUS" << '\n';
     TheLongestRoute(stations_BUS);
-    cout << "TROLLEY" << endl;
+    cout << "TROLLEY" << '\n';
     TheLongestRoute(stations_TROLLEY);
-    cout << "TRAM" << endl;
+    cout << "TRAM" << '\n';
     TheLongestRoute(stations_TRAM);
 
-    cout << 3 << endl;
+    cout << "#3" << '\n';
     StreetWithTheMostStations(stations_BUS, stations_TROLLEY, stations_TRAM);
     return 0;
 }

@@ -85,6 +85,15 @@
 		<Unit filename="/home/hera/CLionProjects/lab3/main.cpp">
 			<Option target="lab3"/>
 		</Unit>
+		<Unit filename="/home/hera/CLionProjects/lab3/src/pugiconfig.hpp">
+			<Option target="lab3"/>
+		</Unit>
+		<Unit filename="/home/hera/CLionProjects/lab3/src/pugixml.cpp">
+			<Option target="lab3"/>
+		</Unit>
+		<Unit filename="/home/hera/CLionProjects/lab3/src/pugixml.hpp">
+			<Option target="lab3"/>
+		</Unit>
 		<Unit filename="/home/hera/CLionProjects/lab3/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
