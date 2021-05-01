@@ -151,7 +151,7 @@ void GetInformationFromXmlFile (vector<Transport_station>& stations_BUS,
                 string one_location = specification.child_value();
                 while (one_location.find(',') != one_location.find('g')) {
                     station_in_question.locations.push_back(one_location.substr(0, one_location.find(',')));
-                    one_location = one_location.substr(one_location.find(',') + 1);
+                    one_location = one_location.substr(one_location.find(',') + 2);
                 }
                 station_in_question.locations.push_back(one_location);
             }
