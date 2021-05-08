@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hera/CLionProjects/untitled11/interface.h
+
+/home/hera/CLionProjects/untitled11/main.cpp
+interface.h
+/home/hera/CLionProjects/untitled11/interface.h
+iostream
+-
+vector
+-
+
+/home/hera/CLionProjects/untitled11/realization.cpp
+interface.h
+/home/hera/CLionProjects/untitled11/interface.h
+

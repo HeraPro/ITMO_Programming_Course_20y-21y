@@ -205,7 +205,6 @@ int main() {
     TheLongestRoute(stations_TROLLEY);
     cout << "TRAM" << '\n';
     TheLongestRoute(stations_TRAM);
-
     cout << "#3" << '\n';
     StreetWithTheMostStations(stations_BUS, stations_TROLLEY, stations_TRAM);
     return 0;
