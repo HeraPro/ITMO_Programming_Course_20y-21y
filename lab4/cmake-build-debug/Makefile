@@ -67,10 +67,10 @@ RM = /home/hera/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/211.7142.21/bin/c
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hera/CLionProjects/untitled11
+CMAKE_SOURCE_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hera/CLionProjects/untitled11/cmake-build-debug
+CMAKE_BINARY_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/untitled11/cmake-build-debug/CMakeFiles /home/hera/CLionProjects/untitled11/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/untitled11/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -169,33 +169,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-realization.o: realization.cpp.o
-
-.PHONY : realization.o
-
-# target to build an object file
-realization.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/realization.cpp.o
-.PHONY : realization.cpp.o
-
-realization.i: realization.cpp.i
-
-.PHONY : realization.i
-
-# target to preprocess a source file
-realization.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/realization.cpp.i
-.PHONY : realization.cpp.i
-
-realization.s: realization.cpp.s
-
-.PHONY : realization.s
-
-# target to generate assembly for a file
-realization.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/realization.cpp.s
-.PHONY : realization.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -208,9 +181,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... realization.o"
-	@echo "... realization.i"
-	@echo "... realization.s"
 .PHONY : help
 
 

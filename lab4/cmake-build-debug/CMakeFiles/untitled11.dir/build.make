@@ -62,10 +62,10 @@ RM = /home/hera/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/211.7142.21/bin/c
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hera/CLionProjects/untitled11
+CMAKE_SOURCE_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hera/CLionProjects/untitled11/cmake-build-debug
+CMAKE_BINARY_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/untitled11.dir/depend.make
@@ -78,43 +78,28 @@ include CMakeFiles/untitled11.dir/flags.make
 
 CMakeFiles/untitled11.dir/main.cpp.o: CMakeFiles/untitled11.dir/flags.make
 CMakeFiles/untitled11.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hera/CLionProjects/untitled11/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/untitled11.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/untitled11.dir/main.cpp.o -c /home/hera/CLionProjects/untitled11/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/untitled11.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/untitled11.dir/main.cpp.o -c /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/main.cpp
 
 CMakeFiles/untitled11.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/untitled11.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hera/CLionProjects/untitled11/main.cpp > CMakeFiles/untitled11.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/main.cpp > CMakeFiles/untitled11.dir/main.cpp.i
 
 CMakeFiles/untitled11.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled11.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hera/CLionProjects/untitled11/main.cpp -o CMakeFiles/untitled11.dir/main.cpp.s
-
-CMakeFiles/untitled11.dir/realization.cpp.o: CMakeFiles/untitled11.dir/flags.make
-CMakeFiles/untitled11.dir/realization.cpp.o: ../realization.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hera/CLionProjects/untitled11/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/untitled11.dir/realization.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/untitled11.dir/realization.cpp.o -c /home/hera/CLionProjects/untitled11/realization.cpp
-
-CMakeFiles/untitled11.dir/realization.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/untitled11.dir/realization.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hera/CLionProjects/untitled11/realization.cpp > CMakeFiles/untitled11.dir/realization.cpp.i
-
-CMakeFiles/untitled11.dir/realization.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled11.dir/realization.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hera/CLionProjects/untitled11/realization.cpp -o CMakeFiles/untitled11.dir/realization.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/main.cpp -o CMakeFiles/untitled11.dir/main.cpp.s
 
 # Object files for target untitled11
 untitled11_OBJECTS = \
-"CMakeFiles/untitled11.dir/main.cpp.o" \
-"CMakeFiles/untitled11.dir/realization.cpp.o"
+"CMakeFiles/untitled11.dir/main.cpp.o"
 
 # External object files for target untitled11
 untitled11_EXTERNAL_OBJECTS =
 
 untitled11: CMakeFiles/untitled11.dir/main.cpp.o
-untitled11: CMakeFiles/untitled11.dir/realization.cpp.o
 untitled11: CMakeFiles/untitled11.dir/build.make
 untitled11: CMakeFiles/untitled11.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hera/CLionProjects/untitled11/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable untitled11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable untitled11"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/untitled11.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -127,6 +112,6 @@ CMakeFiles/untitled11.dir/clean:
 .PHONY : CMakeFiles/untitled11.dir/clean
 
 CMakeFiles/untitled11.dir/depend:
-	cd /home/hera/CLionProjects/untitled11/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hera/CLionProjects/untitled11 /home/hera/CLionProjects/untitled11 /home/hera/CLionProjects/untitled11/cmake-build-debug /home/hera/CLionProjects/untitled11/cmake-build-debug /home/hera/CLionProjects/untitled11/cmake-build-debug/CMakeFiles/untitled11.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4 /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4 /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles/untitled11.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/untitled11.dir/depend
 

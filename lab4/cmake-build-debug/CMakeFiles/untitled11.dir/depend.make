@@ -4,6 +4,3 @@
 CMakeFiles/untitled11.dir/main.cpp.o: ../interface.h
 CMakeFiles/untitled11.dir/main.cpp.o: ../main.cpp
 
-CMakeFiles/untitled11.dir/realization.cpp.o: ../interface.h
-CMakeFiles/untitled11.dir/realization.cpp.o: ../realization.cpp
-

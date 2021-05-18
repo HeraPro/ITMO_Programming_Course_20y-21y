@@ -1,42 +1,8 @@
 #pragma once
 
 namespace myspace{
-    template <typename N>
-    bool cmp (N first, N second);
 
-    template <typename N>
-    bool positive_numbers (N x);
-
-    template <typename T, typename Function>
-    bool all_of (const T &begin, const T &end, Function func);
-
-    template <typename T, typename Function>
-    bool any_of (const T  &begin, const T &end, Function func);
-
-    template <typename T, typename Function>
-    bool none_of (const T &begin, const T &end, Function func);
-
-    template <typename T, typename Function>
-    bool one_of (const T &begin, const T &end, Function func);
-
-    template <typename T, typename Function>
-    bool is_sorted (const T &begin, const T &end, Function func);
-
-    template <typename T, typename Function>
-    bool is_partitioned (T first, T last, Function func);
-
-    template <typename T, typename Element>
-    Element find_not (const T &begin, const T &end, Element elem);
-
-    template <typename T, typename Element>
-    Element find_backward (const T &begin, const T &end, Element elem);
-
-    template <typename T, typename Function>
-    bool is_palindrome(const T &begin, const T &end, Function function);
-
-
-
-/*template <typename N>
+template <typename N>
 bool cmp (N first, N second) {
     return second > first;
 }
@@ -143,6 +109,6 @@ bool is_palindrome(const T &begin, const T &end, Function function){
         }
     }
     return true;
-}*/
+}
 
 }
