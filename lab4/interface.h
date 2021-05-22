@@ -91,7 +91,7 @@ namespace myspace {
     }
 
     template <typename InputIterator, typename Element>
-    bool find_not(InputIterator begin, InputIterator end, Element elem){
+    Element find_not(InputIterator begin, InputIterator end, Element elem){
         for (; begin != end; ++begin){
             if (*begin != elem)
                 return *begin;
@@ -99,21 +99,22 @@ namespace myspace {
     }
 
     template <typename BidirectedIterator, typename Element>
-    bool find_backward(BidirectedIterator begin, BidirectedIterator end, Element elem){
+    BidirectedIterator find_backward(BidirectedIterator begin, BidirectedIterator end, Element elem){
         --end; --begin;
         for (; end != begin; --end)
             if(*end == elem)
-                return *end;
+                return end;
 
     }
 
-    template <typename BidirectedIterator, typename Function>
+    template <typename BidirectedIterator, typename Function> //ama right with naming iterators? check out later
     bool is_palindrome(BidirectedIterator begin, BidirectedIterator end, Function func){
+        --end;
         for (; begin != end; ){
-            --end;
             if (!func(*begin, *end))
                 return false;
-            if (begin == end || begin == --end) //have to work on moving iter with even and uneven combs
+            --end;
+            if (begin == end || begin == end - 1) //have to work on moving iter with even and uneven combs
                 return true;
             else ++begin;
         }
