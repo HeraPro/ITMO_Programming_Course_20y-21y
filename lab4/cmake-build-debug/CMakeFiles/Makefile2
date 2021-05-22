@@ -63,16 +63,16 @@ RM = /home/hera/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/211.7142.21/bin/c
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4
+CMAKE_SOURCE_DIR = /home/hera/CLionProjects/lab4
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug
+CMAKE_BINARY_DIR = /home/hera/CLionProjects/lab4/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/untitled11.dir/all
+all: CMakeFiles/lab4.dir/all
 
 .PHONY : all
 
@@ -82,36 +82,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/untitled11.dir/clean
+clean: CMakeFiles/lab4.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/untitled11.dir
+# Target rules for target CMakeFiles/lab4.dir
 
 # All Build rule for target.
-CMakeFiles/untitled11.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target untitled11"
-.PHONY : CMakeFiles/untitled11.dir/all
+CMakeFiles/lab4.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hera/CLionProjects/lab4/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target lab4"
+.PHONY : CMakeFiles/lab4.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/untitled11.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/untitled11.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/untitled11.dir/rule
+CMakeFiles/lab4.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/lab4/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab4.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/lab4/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/lab4.dir/rule
 
 # Convenience name for target.
-untitled11: CMakeFiles/untitled11.dir/rule
+lab4: CMakeFiles/lab4.dir/rule
 
-.PHONY : untitled11
+.PHONY : lab4
 
 # clean rule for target.
-CMakeFiles/untitled11.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/clean
-.PHONY : CMakeFiles/untitled11.dir/clean
+CMakeFiles/lab4.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/clean
+.PHONY : CMakeFiles/lab4.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

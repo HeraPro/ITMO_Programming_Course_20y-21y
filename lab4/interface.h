@@ -1,114 +1,123 @@
 #pragma once
 
-namespace myspace{
+namespace myspace {
 
-template <typename N>
-bool cmp (N first, N second) {
-    return second > first;
-}
+    template <typename N>
+    bool more (N first, N second){
+        return second > first;
+    }
 
-template <typename N>
-bool positive_numbers (N x) {
-    return x > 0;
-}
+    template <typename N>
+    bool positive_numbers (N x){
+        return x > 0;
+    }
 
-template <typename T, typename Function>
-bool all_of (const T &begin, const T &end, Function func) {
-    for (T iter = begin; iter != end; ++iter) {
-        if (!func(*iter)) {
-            return false;
+    template <typename N>
+    bool equality (N first, N second){
+        return first == second;
+    }
+
+    template <typename N>
+    bool less (N first, N second){
+        return first < second;
+    }
+
+    template <typename N>
+    bool more_or_eq (N first, N second){
+        return first >= second;
+    }
+
+    template <typename N>
+    bool less_or_eq (N first, N second){
+        return first <= second;
+    }
+
+
+    template <typename InputIterator, typename Function>
+    bool all_of(InputIterator begin, InputIterator end, Function func){
+        for (; begin != end; ++begin){
+            if (!func(*begin))
+                return false;
+        }
+        return true;
+    }
+
+    template <typename InputIterator, typename Function>
+    bool any_of(Function func, InputIterator begin, InputIterator end){
+        for (; begin != end; ++begin) {
+            if (func(*begin))
+                return true;
+        }
+        return false;
+    }
+
+    template <typename InputIterator, typename Function>
+    bool none_of(InputIterator begin, InputIterator end, Function func) {
+        return !any_of(begin, end, func);
+    }
+
+    template <typename InputIterator, typename Function>
+    bool one_of(InputIterator begin, InputIterator end, Function func){
+        for (bool exist = false; begin != end; ++begin){
+            if (func(*begin) && !exist)
+                exist = true;
+            else if (func(*begin) && exist)
+                return false;
+        }
+        return true;
+    }
+
+    template <typename InputIterator, typename Function>
+    bool is_sorted(InputIterator begin, InputIterator end, Function func){
+        for (InputIterator back = begin++; begin != end; ++begin) {
+            if (!func(*back, *begin))
+                return false;
+        }
+        return true;
+
+    }
+
+    template <typename InputIterator, typename Function>
+    bool is_partitioned(InputIterator begin, InputIterator end, Function func){
+        for (; begin != end; ++begin) {
+            if (!func(*begin))
+                break;
+        }
+        for (; begin != end; ++begin) {
+            if (func(*begin))
+                return false;
+        }
+        return true;
+    }
+
+    template <typename InputIterator, typename Element>
+    bool find_not(InputIterator begin, InputIterator end, Element elem){
+        for (; begin != end; ++begin){
+            if (*begin != elem)
+                return *begin;
         }
     }
-    return true;
-}
 
-template <typename T, typename Function>
-bool any_of (const T  &begin, const T &end, Function func) {
-    for (T iter = begin; iter != end; ++iter) {
-        if (func(*iter)) {
-            return true;
+    template <typename BidirectedIterator, typename Element>
+    bool find_backward(BidirectedIterator begin, BidirectedIterator end, Element elem){
+        --end; --begin;
+        for (; end != begin; --end)
+            if(*end == elem)
+                return *end;
+
+    }
+
+    template <typename BidirectedIterator, typename Function>
+    bool is_palindrome(BidirectedIterator begin, BidirectedIterator end, Function func){
+        for (; begin != end; ){
+            --end;
+            if (!func(*begin, *end))
+                return false;
+            if (begin == end || begin == --end) //have to work on moving iter with even and uneven combs
+                return true;
+            else ++begin;
         }
-    }
-    return false;
-}
 
-template <typename T, typename Function>
-bool none_of (const T &begin, const T &end, Function func) {
-    for (T iter = begin; iter != end; ++iter) {
-        if (func(*iter)) {
-            return false;
-        }
     }
-    return true;
-}
-
-template <typename T, typename Function>
-bool one_of (const T &begin, const T &end, Function func) {
-    int count = 0;
-    for (T iter = begin; iter != end; ++iter) {
-        if (func(*iter)) {
-            ++count;
-        }
-    }
-    return count == 1;
-}
-
-
-template <typename T, typename Function>
-bool is_sorted (const T &begin, const T &end, Function func) {
-    for (T iter = begin; iter != end; ++iter) {
-        if (func(*iter, *(iter - 1))) {
-            return false;
-        }
-    }
-    return true;
-}
-
-template <typename T, typename Function>
-bool is_partitioned (T first, T last, Function func) {
-    for (; first != last; ++first) {
-        if (!func(*first))
-            break;
-    }
-    for (; first != last; ++first) {
-        if (func(*first))
-            return false;
-    }
-    return true;
-}
-
-template <typename T, typename Element>
-Element find_not (const T &begin, const T &end, Element elem) {
-    for (T iter = begin; iter != end; ++iter) {
-        if (*iter != elem) {
-            return *iter;
-        }
-    }
-    return *end;
-}
-
-template <typename T, typename Element>
-Element find_backward (const T &begin, const T &end, Element elem) {
-    for (T iter = end - 1; iter != begin; --iter) {
-        if (elem == *iter) {
-            return *iter;
-        }
-    }
-    return *end;
-
-}
-
-template <typename T, typename Function>
-bool is_palindrome(const T &begin, const T &end, Function function){
-    T start, finish;
-    for (start = begin, finish = end - 1;
-         start != end && finish != begin;
-         start++, finish--) {
-        if (*start != *finish) {
-            return false;
-        }
-    }
-    return true;
-}
 
 }

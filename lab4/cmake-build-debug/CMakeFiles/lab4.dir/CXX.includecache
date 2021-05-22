@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hera/CLionProjects/lab4/interface.h
+
+/home/hera/CLionProjects/lab4/main.cpp
+interface.h
+/home/hera/CLionProjects/lab4/interface.h
+iostream
+-
+vector
+-
+
