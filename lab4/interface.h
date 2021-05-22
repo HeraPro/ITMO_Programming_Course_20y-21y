@@ -11,6 +11,10 @@ namespace myspace {
     bool positive_numbers (N x){
         return x > 0;
     }
+    template <typename N>
+    bool negative_numbers (N x){
+        return x < 0;
+    }
 
     template <typename N>
     bool equality (N first, N second){
@@ -23,7 +27,7 @@ namespace myspace {
     }
 
     template <typename N>
-    bool more_or_eq (N first, N second){
+    bool greater_or_eq (N first, N second){
         return first >= second;
     }
 
@@ -43,7 +47,7 @@ namespace myspace {
     }
 
     template <typename InputIterator, typename Function>
-    bool any_of(Function func, InputIterator begin, InputIterator end){
+    bool any_of(InputIterator begin, InputIterator end, Function func){
         for (; begin != end; ++begin) {
             if (func(*begin))
                 return true;
@@ -53,7 +57,7 @@ namespace myspace {
 
     template <typename InputIterator, typename Function>
     bool none_of(InputIterator begin, InputIterator end, Function func) {
-        return !any_of(begin, end, func);
+        return !myspace::any_of(begin, end, func);
     }
 
     template <typename InputIterator, typename Function>
@@ -69,7 +73,7 @@ namespace myspace {
 
     template <typename InputIterator, typename Function>
     bool is_sorted(InputIterator begin, InputIterator end, Function func){
-        for (InputIterator back = begin++; begin != end; ++begin) {
+        for (InputIterator back = begin++; begin != end; ++begin, ++back) {
             if (!func(*back, *begin))
                 return false;
         }
@@ -91,34 +95,36 @@ namespace myspace {
     }
 
     template <typename InputIterator, typename Element>
-    Element find_not(InputIterator begin, InputIterator end, Element elem){
+    InputIterator find_not(InputIterator begin, InputIterator end, Element elem){
         for (; begin != end; ++begin){
             if (*begin != elem)
-                return *begin;
+                return begin;
         }
+        return end;
     }
 
     template <typename BidirectedIterator, typename Element>
     BidirectedIterator find_backward(BidirectedIterator begin, BidirectedIterator end, Element elem){
-        --end; --begin;
-        for (; end != begin; --end)
-            if(*end == elem)
+        for (; end != begin;) {
+            --end;
+            if (*end == elem)
                 return end;
+        }
+        return begin;
 
     }
 
-    template <typename BidirectedIterator, typename Function> //ama right with naming iterators? check out later
-    bool is_palindrome(BidirectedIterator begin, BidirectedIterator end, Function func){
-        --end;
+    template <typename RandomAccessIterator, typename Function> //ama right with naming iterators? check out later
+    bool is_palindrome(RandomAccessIterator begin, RandomAccessIterator end, Function func){
         for (; begin != end; ){
+            --end;
+            if (begin == end) //have to work on moving iter with even and uneven combs
+                return true;
             if (!func(*begin, *end))
                 return false;
-            --end;
-            if (begin == end || begin == end - 1) //have to work on moving iter with even and uneven combs
-                return true;
-            else ++begin;
+            ++begin;
         }
-
+        return false;
     }
 
 }
