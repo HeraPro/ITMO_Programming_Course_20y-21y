@@ -67,10 +67,10 @@ RM = /home/hera/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/211.7142.21/bin/c
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4
+CMAKE_SOURCE_DIR = /home/hera/CLionProjects/lab4
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug
+CMAKE_BINARY_DIR = /home/hera/CLionProjects/lab4/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/lab4/cmake-build-debug/CMakeFiles /home/hera/CLionProjects/lab4/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab4/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hera/CLionProjects/lab4/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -130,17 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named untitled11
+# Target rules for targets named lab4
 
 # Build rule for target.
-untitled11: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 untitled11
-.PHONY : untitled11
+lab4: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab4
+.PHONY : lab4
 
 # fast build rule for target.
-untitled11/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/build
-.PHONY : untitled11/fast
+lab4/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/build
+.PHONY : lab4/fast
 
 main.o: main.cpp.o
 
@@ -148,7 +148,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -157,7 +157,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -166,7 +166,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled11.dir/build.make CMakeFiles/untitled11.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -177,7 +177,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... untitled11"
+	@echo "... lab4"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
