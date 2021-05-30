@@ -4,11 +4,12 @@
 
 using namespace myspace;
 
-int main () {
-    std::vector <int> vec = {1, 2, 3, 3, -1, 1};
+int main()
+{
+    std::vector<int> vec = {1, 2, 3, 3, -1, 1};
 
     std::cout << std::boolalpha;
-    std::cout << "all_of - " << myspace::all_of(vec.begin(), vec.end(), positive_numbers<int>)  << '\n';
+    std::cout << "all_of - " << myspace::all_of(vec.begin(), vec.end(), positive_numbers<int>) << '\n';
     std::cout << "any_of - " << myspace::any_of(vec.begin(), vec.end(), positive_numbers<int>) << '\n';
     std::cout << "none_of - " << myspace::none_of(vec.begin(), vec.end(), positive_numbers<int>) << '\n';
     std::cout << "one_of - " << one_of(vec.begin(), vec.end(), positive_numbers<int>) << '\n';

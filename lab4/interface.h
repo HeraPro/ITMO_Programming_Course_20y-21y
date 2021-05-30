@@ -103,8 +103,8 @@ namespace myspace {
         return end;
     }
 
-    template <typename BidirectedIterator, typename Element>
-    BidirectedIterator find_backward(BidirectedIterator begin, BidirectedIterator end, Element elem){
+    template <typename BidirectionalIterator, typename Element>
+    BidirectionalIterator find_backward(BidirectionalIterator begin, BidirectionalIterator end, Element elem){
         for (; end != begin;) {
             --end;
             if (*end == elem)
