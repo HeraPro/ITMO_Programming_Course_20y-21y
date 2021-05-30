@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="Header Files\SolutionPhases">
+      <UniqueIdentifier>{522cd34d-af9c-41a8-9b11-36aae410d3dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SolutionPhases">
+      <UniqueIdentifier>{ec4cdcf0-80e5-40cc-bacf-b87fc938f48c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CubeTransform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix4x4f.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vector3f.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SolutionStrategy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RuleEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryProvider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ISolutionPhase.cpp">
+      <Filter>Source Files\SolutionPhases</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingWhiteCellUpToCenterPhase.cpp">
+      <Filter>Source Files\SolutionPhases</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingTopCornersPhase.cpp">
+      <Filter>Source Files\SolutionPhases</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingCornerWhiteDownPhase.cpp">
+      <Filter>Source Files\SolutionPhases</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingSideCentersPhase.cpp">
+      <Filter>Source Files\SolutionPhases</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingBottomCentersPhase.cpp">
+      <Filter>Source Files\SolutionPhases</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingBottomCornersPhase.cpp">
+      <Filter>Source Files\SolutionPhases</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckSolvedCubePhase.cpp">
+      <Filter>Source Files\SolutionPhases</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeTransformData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RubikCubeController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestRunner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CubeTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix4x4f.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vector3f.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glut.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SolutionStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RuleEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISolutionPhase.h">
+      <Filter>Header Files\SolutionPhases</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingWhiteCellUpToCenterPhase.h">
+      <Filter>Header Files\SolutionPhases</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingTopCornersPhase.h">
+      <Filter>Header Files\SolutionPhases</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingCornerWhiteDownPhase.h">
+      <Filter>Header Files\SolutionPhases</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingSideCentersPhase.h">
+      <Filter>Header Files\SolutionPhases</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingBottomCentersPhase.h">
+      <Filter>Header Files\SolutionPhases</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingBottomCornersPhase.h">
+      <Filter>Header Files\SolutionPhases</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckSolvedCubePhase.h">
+      <Filter>Header Files\SolutionPhases</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeTransformData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RubikCubeController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CubeTransform.resX">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="matrix4x4f.resX">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vector3f.resX">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SolutionStrategy.resX">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleEngine.resX">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeometryProvider.resX">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RubikCubeController.resX">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
