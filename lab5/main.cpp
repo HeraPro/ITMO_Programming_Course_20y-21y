@@ -83,8 +83,6 @@ int main() {
   TestChangeCapacity();
   std::cout << std::endl;
   TestIteratorsSTLAlgorithms();
-  CircularBuffer<int> abc(6);
-  CircularBuffer<int> ac(5);
 
     return 0;
 }
