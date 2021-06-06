@@ -231,7 +231,7 @@ const bool CircularBuffer<Data>::iterator::operator==(const iterator& iterator) 
 
 template <typename Data>
 const bool CircularBuffer<Data>::iterator::operator!=(const iterator& iterator) const {
-  return *this != iterator;
+  return !(*this == iterator);
 }
 
 template <typename Data>
