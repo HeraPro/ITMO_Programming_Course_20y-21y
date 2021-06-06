@@ -1,202 +1,90 @@
 #include <iostream>
 #include <algorithm>
-#include <vector>
 
+#include "circular_buffer.hpp"
 
-template <class T>
-class Circular_Buffer {
-private:
-    int capacity{};
-    T *data;
-    int head = 0;
-    int tail = 0;
+template <typename Buffer>
+void PrintBuffer(Buffer&& buffer) {
+  std::cout << "  ";
+  for (auto&& i : buffer) {
+    std::cout << i << " ";
+  }
+  std::cout << std::endl;
+}
 
-public:
-    class Iterator : public std::iterator<std::random_access_iterator_tag, T> {
-    private:
-        T *p;
-    
-    public:
-        Iterator() : p (nullptr) {}
-        explicit Iterator(T *p) : p (p) {}
+template <typename Buffer>
+void PrintReverseBuffer(Buffer&& buffer) {
+  std::cout << "  ";
+  for (auto it = buffer.rbegin(); it != buffer.rend(); ++it) {
+    std::cout << *it << " ";
+  }
+  std::cout << std::endl;
+}
 
-        Iterator operator++ () {
-            p++;
-            return *this;
-        }
+template <typename Buffer>
+void InsertSomeElements(Buffer&& buffer) {
+    buffer.push_back(1);
+    buffer.push_back(2);
+    buffer.push_back(3);
+    buffer.pop_front();
+    buffer.pop_front();
+    buffer.push_back(4);
+    buffer.push_front(5);
+    buffer.push_front(6);
+    buffer.push_front(7);
+}
 
-        Iterator operator++ (T) {
-            Iterator tmp(*this);
-            ++p;
-            return tmp;
-        }
-        
-        Iterator &operator-- () {
-            p--;
-            return *this;
-        }
+void TestIteratorsForPrint() {
+  std::cout << "Testing (-reverse)Iterators..." << std::endl;
+  size_t capacity = 4;
+  CircularBuffer<int32_t> buffer(capacity);
+  InsertSomeElements(buffer);
+  PrintBuffer(buffer);
+  PrintReverseBuffer(buffer);
+}
 
-        Iterator operator-- (T) {
-            Iterator tmp(*this);
-            --p;
-            return tmp;
-        }
+void TestIteratorsSTLAlgorithms() {
+  std::cout << "Testing with some STL algorithms..." << std::endl;
+  size_t capacity = 4;
+  CircularBuffer<int32_t> buffer(capacity);
+  InsertSomeElements(buffer);
+  std::cout << "  Original buffer:" << std::endl;
+  PrintBuffer(buffer);
+  std::cout << "  Testing on std::sort: " << std::endl;
+  std::sort(buffer.begin(), buffer.end());
+  PrintBuffer(buffer);
+  std::cout << "  Performing right-rotate using std::rotate: " << std::endl;
+  std::rotate(buffer.rbegin(), buffer.rbegin() + 1, buffer.rend());
+  PrintBuffer(buffer);
+}
 
-        Iterator operator+ (int x) {
-            return Iterator(p + x);
-        }
+void TestChangeCapacity() {
+  std::cout << "Testing ChangeCapacity..." << std::endl;
+  size_t capacity = 4;
+  CircularBuffer<int32_t> buffer(capacity);
+  InsertSomeElements(buffer);
+  std::cout << "  capacity = " << capacity << ": " << std::endl;
+  PrintBuffer(buffer);
 
-        Iterator &operator+= (T x) {
-            p += x;
-            return *this;
-        }
-        
-        T operator- (const Iterator &it) {
-            return (p - it.p);
-        }
-        
-        Iterator operator- (int x) {
-            return Iterator(p - x);
-        }
+  capacity = 3;
+  buffer.ChangeCapacity(capacity);
+  std::cout << "  new decreased capacity = " << capacity << ": " << std::endl;
+  PrintBuffer(buffer);
 
-        Iterator &operator-= (T x) {
-            p -= x;
-            return *this;
-        }
-        T &operator* () const {
-            return *p;
-        }
-
-        T *operator-> () const {
-            return p;
-        }
-
-        T &operator[] (const int x) {
-            return p[x];
-        }
-
-        bool operator== (const Iterator &x) const {
-            return x.p == this->p;
-        }
-
-        bool operator!= (const Iterator &x) const {
-            return x.p != this->p;
-        }
-
-        bool operator< (const Iterator &x) const {
-            return x.p < this->p;
-        }
-
-        bool operator> (const Iterator &x) const {
-            return x.p > this->p;
-        }
-
-        bool operator>= (const Iterator &x) const {
-            return x.p >= this->p;
-        }
-
-        bool operator<= (const Iterator &x) const {
-            return x.p <= this->p;
-        }
-    };
-    
-    Circular_Buffer() = default;;
-
-    explicit Circular_Buffer (int cap) : capacity(cap) {
-        head = 0;
-        tail = 0;
-        data = new T[capacity];
-    }
-
-
-    Iterator begin () const {
-        return Iterator(data + head);
-    }
-
-    Iterator end () const {
-        return Iterator(data + tail);
-    }
-
-    T &operator[] (int index) {
-        return data[index % capacity];
-    }
-
-    void push_front(const T &x) {
-        if (tail == capacity) {
-            data[head] = x;
-            return;
-        }
-        for (int i = tail; i >= head; i--) {
-            data[i + 1] = data[i];
-        }
-        data[head] = x;
-        tail++;
-    }
-
-    void pop_front() {
-        data[head] = 0;
-        head++;
-    }
-
-    void push_back(const T &x) {
-        if (tail == capacity) { 
-            tail--;
-        }
-        data[tail] = x;
-        if (tail != capacity + 1) {
-            tail++;
-        }
-    }
-
-    void pop_back() {
-        data[tail] = 0;
-        tail--;
-    }
-
-    void resize(const int &n) {
-        T *tmp = new T[n];
-        for (int i = 0; i < n; i++) {
-            tmp[i] = data[i];
-        }
-        delete[] data;
-        data = tmp;
-        capacity = n;
-    }
-
-    void print_buffer() {
-        for (Iterator iter = begin(); iter != end(); ++iter) {
-            std::cout << *iter << " ";
-        }
-        std::cout << std::endl;
-    }
- 
-    ~Circular_Buffer() {
-        delete[] data;
-    }
-};
-
-
+  capacity = 9;
+  buffer.ChangeCapacity(capacity);
+  std::cout << "  new increased capacity = " << capacity << ": " << std::endl;
+  PrintBuffer(buffer);
+}
 
 int main() {
-    Circular_Buffer<int> buffer(3);
-
-    buffer.push_front(1);
-    buffer.push_front(2);
-    buffer.push_front(3);
-    
-    buffer.print_buffer();
-
-    buffer.resize(5);
-
-    buffer.push_back(4);
-    buffer.push_back(-1);
-    buffer.print_buffer();
-    
-    std::sort(buffer.begin(), buffer.end());
-    buffer.print_buffer();
-
-    auto result = std::max_element (buffer.begin(), buffer.end()); 
-    std::cout << "max = " << *result << std::endl;
+  TestIteratorsForPrint();
+  std::cout << std::endl;
+  TestChangeCapacity();
+  std::cout << std::endl;
+  TestIteratorsSTLAlgorithms();
+  CircularBuffer<int> abc(6);
+  CircularBuffer<int> ac(5);
 
     return 0;
 }
