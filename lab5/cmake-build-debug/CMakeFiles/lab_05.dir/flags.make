@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/.
 
-CXX_FLAGS = -g -std=gnu++14
+CXX_FLAGS = -g -std=gnu++2a
 

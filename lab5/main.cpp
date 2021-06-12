@@ -37,7 +37,8 @@ void InsertSomeElements(Buffer&& buffer) {
 void TestIteratorsForPrint() {
   std::cout << "Testing (-reverse)Iterators..." << std::endl;
   size_t capacity = 4;
-  CircularBuffer<int32_t> buffer(capacity);
+  std::allocator<int> alloc; //testing with "own" alloc
+  CircularBuffer<int32_t> buffer(capacity, alloc);
   InsertSomeElements(buffer);
   PrintBuffer(buffer);
   PrintReverseBuffer(buffer);

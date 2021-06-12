@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/build",
+  "command": "/bin/c++   -I/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/.  -g   -std=gnu++14 -o CMakeFiles/lab_05.dir/main.cpp.o -c /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/main.cpp",
+  "file": "/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/main.cpp"
+}
+]
