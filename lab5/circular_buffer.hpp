@@ -32,7 +32,7 @@ public:
     void push_front(const Data &);
 
     // void push_front(Data&&);
-    const Data pop_front();
+    void pop_front();
 
     void push_back(const Data &);
 
