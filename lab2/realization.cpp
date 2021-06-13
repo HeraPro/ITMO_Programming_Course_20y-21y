@@ -60,18 +60,16 @@ void Polynom::parser(string &tmp) {
 }
 
 
-//Polynom &Polynom::operator = (const Polynom &tmp){
-//    size = tmp.size;
-//    polynom = tmp.polynom;
-//    origin = tmp.origin;
-//    return *this;
-//}
+Polynom &Polynom::operator = (const Polynom &tmp)&{
+    polynom = tmp.polynom;
+    return *this;
+}
 
-Polynom &Polynom::operator = (string input){
+/*Polynom &Polynom::operator = (string input){
     Polynom tmp (input);
     *this = tmp;
     return *this;
-}
+}*/
 
 bool Polynom::operator == (const Polynom &tmp) const{
     if (polynom != tmp.polynom) return false;
@@ -115,22 +113,22 @@ Polynom &Polynom::operator /= (const int &tmp){
     return *this;
 }
 
-const Polynom Polynom::operator + (const Polynom &tmp) const{
+Polynom Polynom::operator + (const Polynom &tmp) const{
     Polynom sum = *this;
     return sum += tmp;
 }
 
-const Polynom Polynom::operator - (const Polynom &tmp) const{
+Polynom Polynom::operator - (const Polynom &tmp) const{
     Polynom diff = *this;
     return diff -= tmp;
 }
 
-const Polynom Polynom::operator * (const Polynom &tmp) const{
+Polynom Polynom::operator * (const Polynom &tmp) const{
     Polynom multi = *this;
     return multi *= tmp;
 }
 
-const Polynom Polynom::operator / (const int &tmp) const{
+Polynom Polynom::operator / (const int &tmp) const{
     Polynom div = *this;
     return div /= tmp;
 }

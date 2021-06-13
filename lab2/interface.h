@@ -12,8 +12,8 @@ private:
 public:
     explicit Polynom(string &_polynom);
     Polynom() = default;
-//    Polynom &operator = (const Polynom &tmp);
-    Polynom &operator = (string);
+    Polynom &operator = (const Polynom &tmp)&;
+  //  Polynom &operator = (string);
 
     bool operator == (const Polynom &tmp) const; //bool?
     bool operator != (const Polynom &tmp) const;
@@ -23,10 +23,10 @@ public:
     Polynom &operator *= (const Polynom &tmp);
     Polynom &operator /= (const int &tmp);
 
-    const Polynom operator + (const Polynom &tmp) const;
-    const Polynom operator - (const Polynom &tmp) const;
-    const Polynom operator * (const Polynom &tmp) const;
-    const Polynom operator / (const int &tmp) const;
+    Polynom operator + (const Polynom &tmp) const;
+    Polynom operator - (const Polynom &tmp) const;
+    Polynom operator * (const Polynom &tmp) const;
+    Polynom operator / (const int &tmp) const;
 
 //    Polynom &operator ()++;
 //    Polynom &operator ()--;
