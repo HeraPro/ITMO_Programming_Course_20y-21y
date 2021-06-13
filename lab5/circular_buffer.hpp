@@ -3,7 +3,7 @@
 #include <iterator>
 #include <memory>
 
-template<typename Data>
+template<typename Data, typename Alloc = std::allocator<Data>>
 class CircularBuffer {
 private:
     size_t size_ = 0;
@@ -11,22 +11,22 @@ private:
 
     Data *head = nullptr;
     Data *start_ = nullptr;
-    using alloc = std::allocator<Data>;
-    alloc alloc_;
-    using alloc_traits = std::allocator_traits<decltype(alloc_)>;
+
+    using alloc_traits = std::allocator_traits<Alloc>;
+    Alloc alloc_;
 
     size_t index(size_t i) const { return (start_ - head + i) % capacity_; };
 
 public:
     CircularBuffer() = default;
-    explicit CircularBuffer(size_t capacity);
-    CircularBuffer(size_t capacity, alloc alloc_); //for custom allocator inherited from allocator
+    explicit CircularBuffer(const size_t capacity);
+//    CircularBuffer(const size_t capacity, const Alloc &alloc_); //for custom allocator
     CircularBuffer(const CircularBuffer &);
     // CircularBuffer(CircularBuffer&&);
 
     ~CircularBuffer();
 
-    CircularBuffer &operator=(const CircularBuffer &);
+//    CircularBuffer &operator=(const CircularBuffer &);
     // CircularBuffer& operator=(CircularBuffer&&);
 
     void push_front(const Data &);
@@ -112,23 +112,23 @@ public:
         typedef decltype(std::declval<iterator>() -
                          std::declval<iterator>()) difference_type;
         typedef Data value_type;
-        typedef Data *pointer;
-        typedef Data &reference;
+        typedef Data* pointer;
+        typedef Data& reference;
     };
 
     typedef std::reverse_iterator<iterator> reverse_iterator;
 
-    iterator begin() {
+    iterator begin() const{
         return iterator(head, start_,/* size_,*/ capacity_, start_, 0);
     }
 
-    iterator end() {
+    iterator end() const{
         return iterator(head, head + index(size_), /*size_,*/ capacity_, start_, capacity_);
     }
 
-    reverse_iterator rbegin() { return std::make_reverse_iterator(end()); }
+    reverse_iterator rbegin() const{ return std::make_reverse_iterator(end()); }
 
-    reverse_iterator rend() { return std::make_reverse_iterator(begin()); }
+    reverse_iterator rend() const{ return std::make_reverse_iterator(begin()); }
 
 //  class Alloc{
 //  public:

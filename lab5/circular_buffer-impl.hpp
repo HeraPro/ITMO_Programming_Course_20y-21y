@@ -2,64 +2,75 @@
 
 #include <memory>
 
-
-template<typename Data>
-CircularBuffer<Data>::CircularBuffer(size_t capacity)
-        : capacity_{capacity}, size_{0} {
-    start_ = head = alloc_.allocate(capacity_);
+template<typename Data, typename Alloc>
+CircularBuffer<Data, Alloc>::CircularBuffer(const size_t capacity):
+        capacity_{capacity},
+        size_{0},
+        head(alloc_traits::allocate(alloc_, capacity)) {
+    start_ = head;
     for (size_t i = 0; i < capacity_; ++i) {
-        head[i] = 0;
+        alloc_traits::construct(alloc_, head + i, 0);
+        //head[i] = 0;
     }
 //  head = new Data[capacity];
     // start_ = head;
 }
 
-template<typename Data>
-CircularBuffer<Data>::CircularBuffer(size_t capacity, alloc alloc_)
-        : capacity_{capacity}, size_{0} {
+/*template<typename Data, typename Alloc>
+CircularBuffer<Data, Alloc>::CircularBuffer(const size_t capacity, Alloc &alloc):
+        capacity_{capacity},
+        size_{0} {
     start_ = head = alloc_.allocate(capacity_);
     for (size_t i = 0; i < capacity_; ++i) {
-        head[i] = 0;
+        alloc_.construct(head + i, 0);
+        //head[i] = 0;
     }
+
 //  head = new Data[capacity];
     // start_ = head;
-}
+}*/
 
-template<typename Data>
-Data &CircularBuffer<Data>::operator[](size_t i) {
-    return head[index(i)];
-}
-
-template<typename Data>
-const Data &CircularBuffer<Data>::operator[](size_t i) const {
-    return head[index(i)];
-}
-
-template<typename Data>
-CircularBuffer<Data>::CircularBuffer(const CircularBuffer &buffer):
+template<typename Data, typename Alloc>
+CircularBuffer<Data, Alloc>::CircularBuffer(const CircularBuffer &buffer): //fixed
         size_{buffer.size_},
         capacity_{buffer.capacity_} {
-    start_ = head = alloc_.allocate(capacity_);
-    for (size_t i = 0; i < size_; i++) {
-        operator[](i) = buffer[i];
+    alloc_traits::select_on_container_copy_construction(alloc_);
+    head = alloc_traits::allocate(alloc_, capacity_);
+    start_ = (buffer.start_ - buffer.head) + head;
+    for (size_t i = 0; i < size_; ++i) {
+        alloc_.construct(head +i, buffer.head[i]);
+        //operator[](i) = buffer[i];
     }
 }
 
-template<typename Data>
-CircularBuffer<Data>::~CircularBuffer() { //fixed
-    std::destroy(begin(), end());
-    alloc_.deallocate(head, capacity_);
+template<typename Data, typename Alloc>
+Data &CircularBuffer<Data, Alloc>::operator[](size_t i) {
+    return head[index(i)];
 }
 
-template<typename Data>
-CircularBuffer<Data> &CircularBuffer<Data>::operator=(const CircularBuffer &buffer) {
+template<typename Data, typename Alloc>
+const Data &CircularBuffer<Data, Alloc>::operator[](size_t i) const {
+    return head[index(i)];
+}
+
+template<typename Data, typename Alloc>
+CircularBuffer<Data, Alloc>::~CircularBuffer() { //fixed for custom destroy
+    for (size_t i = 0; i < capacity_; ++i) {
+        alloc_traits::destroy(alloc_, head + i);
+    }
+    //std::destroy(begin(), end());
+    alloc_traits::deallocate(alloc_, head, capacity_);
+}
+
+/*template<typename Data>
+CircularBuffer<Data> &CircularBuffer<Data>::operator=(const CircularBuffer &buffer) { //rewrite
     if (capacity_ == buffer.capacity_){
         for (size_t i = 0; i < capacity_; i++) {
             operator[](i) = buffer[i];
         }
         return *this;
     }
-    std::destroy(begin(), end());
+    std::destroy(begin(), end()); //rewrite
     alloc_.deallocate(head, capacity_);
     size_ = buffer.size_;
     capacity_ = buffer.capacity_;
@@ -69,47 +80,48 @@ CircularBuffer<Data> &CircularBuffer<Data>::operator=(const CircularBuffer &buff
         operator[](i) = buffer[i];
     }
     return *this;
-}
+}*/
 
-template<typename Data>
-Data &CircularBuffer<Data>::front() {
+template<typename Data, typename Alloc>
+Data &CircularBuffer<Data, Alloc>::front() {
     return operator[](0);
 }
 
-template<typename Data>
-const Data &CircularBuffer<Data>::front() const {
+template<typename Data, typename Alloc>
+const Data &CircularBuffer<Data, Alloc>::front() const {
     return operator[](0);
 }
 
-template<typename Data>
-Data &CircularBuffer<Data>::back() {
+template<typename Data, typename Alloc>
+Data &CircularBuffer<Data, Alloc>::back() {
     return operator[](size_ - 1);
 }
 
-template<typename Data>
-const Data &CircularBuffer<Data>::back() const {
+template<typename Data, typename Alloc>
+const Data &CircularBuffer<Data, Alloc>::back() const {
     return operator[](size_ - 1);
 }
 
-template<typename Data>
-void CircularBuffer<Data>::push_back(const Data &element) {
+template<typename Data, typename Alloc>
+void CircularBuffer<Data, Alloc>::push_back(const Data &element) { //fixed
     if (size_ != capacity_) {
         ++size_;
     } else {
         ++start_;
     }
-    back() = element; //construct from allocator
+    alloc_traits::construct(alloc_, &back(), element); //construct from allocator
+    //back() = element;
 }
 
-template<typename Data>
-const Data CircularBuffer<Data>::pop_back() {
+template<typename Data, typename Alloc>
+const Data CircularBuffer<Data, Alloc>::pop_back() {
     const auto &return_value = back();
     --size_;
     return return_value;
 }
 
-template<typename Data>
-void CircularBuffer<Data>::push_front(const Data &element) {
+template<typename Data, typename Alloc>
+void CircularBuffer<Data, Alloc>::push_front(const Data &element) { //fixed
     if (size_ != capacity_) {
         ++size_;
     }
@@ -120,12 +132,11 @@ void CircularBuffer<Data>::push_front(const Data &element) {
     } else {
         start_ = head + capacity_ - 1;
     }
-
-    front() = element;
+    alloc_traits::construct(alloc_, &front(), element);
 }
 
-template<typename Data>
-const Data CircularBuffer<Data>::pop_front() {
+template<typename Data, typename Alloc>
+const Data CircularBuffer<Data, Alloc>::pop_front() {
     const auto &return_value = front();
     --size_;
 
@@ -139,9 +150,27 @@ const Data CircularBuffer<Data>::pop_front() {
     return return_value;
 }
 
-template<typename Data>
-void CircularBuffer<Data>::ChangeCapacity(size_t new_capacity) { //fixed
+template<typename Data, typename Alloc>
+void CircularBuffer<Data, Alloc>::ChangeCapacity(size_t new_capacity) { //fixed
     if (capacity_ == new_capacity) { return; }
+    alloc_traits::select_on_container_copy_construction(alloc_);
+    Data *ptr;
+    ptr = alloc_traits::allocate(alloc_, new_capacity);
+    const auto new_size = std::min(size_, new_capacity);
+    for (size_t i = 0; i < new_size; ++i) {
+        alloc_traits::construct(alloc_, ptr + i, operator[](i)); //including custom
+        //(ptr[i] = operator[](i);
+    }
+    for (size_t i = 0; i < capacity_; ++i) {
+        alloc_traits::destroy(alloc_, head + i);
+    }
+    //std::destroy(begin(), end());
+    alloc_.deallocate(head, capacity_);
+    size_ = new_size;
+    capacity_ = new_capacity;
+    head = start_ = ptr;
+
+/*    if (capacity_ == new_capacity) { return; }
 //    if (capacity_ > new_capacity){ size_ = capacity_ = new_capacity;}
     Data *ptr;
     ptr = alloc_.allocate(new_capacity);
@@ -153,105 +182,95 @@ void CircularBuffer<Data>::ChangeCapacity(size_t new_capacity) { //fixed
     alloc_.deallocate(head, capacity_);
     size_ = new_size;
     capacity_ = new_capacity;
-    head = start_ = ptr;
-
-    /*auto new_array = new Data[new_capacity];
-    const auto new_size = std::min(size_, new_capacity);
-    for (size_t i = 0; i < new_size; i++) {
-        new_array[i] = operator[](i);
-    }
-    delete[] head;
-    size_ = new_size;
-    capacity_ = new_capacity;
-      head = start_ = new_array; */
+    head = start_ = ptr;*/
 }
 
 // iterator
-template<typename Data>
-typename CircularBuffer<Data>::iterator &CircularBuffer<Data>::iterator::operator+=(size_t i) {
+template<typename Data, typename Alloc>
+typename CircularBuffer<Data, Alloc>::iterator &CircularBuffer<Data, Alloc>::iterator::operator+=(size_t i) {
     cur_ = ptr_ + (cur_ - ptr_ + i) % capacity_;
     diff_from_start_ += i;
     return *this;
 }
 
-template<typename Data>
-typename CircularBuffer<Data>::iterator &
-CircularBuffer<Data>::iterator::operator++() {
+template<typename Data, typename Alloc>
+typename CircularBuffer<Data, Alloc>::iterator &
+CircularBuffer<Data, Alloc>::iterator::operator++() {
     return *this += 1;
 }
 
-template<typename Data>
-typename CircularBuffer<Data>::iterator const CircularBuffer<Data>::iterator::operator++(int) {
+template<typename Data, typename Alloc>
+typename CircularBuffer<Data, Alloc>::iterator const CircularBuffer<Data, Alloc>::iterator::operator++(int) {
     auto return_iterator = *this;
     *this += 1;
     return return_iterator;
 }
 
-template<typename Data>
-typename CircularBuffer<Data>::iterator CircularBuffer<Data>::iterator::operator+(size_t i) const {
+template<typename Data, typename Alloc>
+typename CircularBuffer<Data, Alloc>::iterator CircularBuffer<Data, Alloc>::iterator::operator+(size_t i) const {
     auto return_iterator = *this;
     return return_iterator += i;
 }
 
-template<typename Data>
-typename CircularBuffer<Data>::iterator &CircularBuffer<Data>::iterator::operator-=(
+template<typename Data, typename Alloc>
+typename CircularBuffer<Data, Alloc>::iterator &CircularBuffer<Data, Alloc>::iterator::operator-=(
         size_t i) {
     cur_ = ptr_ + (cur_ - ptr_ - i + capacity_) % capacity_;
     diff_from_start_ -= i;
     return *this;
 }
 
-template<typename Data>
-typename CircularBuffer<Data>::iterator &
-CircularBuffer<Data>::iterator::operator--() {
+template<typename Data, typename Alloc>
+typename CircularBuffer<Data, Alloc>::iterator &
+CircularBuffer<Data, Alloc>::iterator::operator--() {
     return *this -= 1;
 }
 
-template<typename Data>
-typename CircularBuffer<Data>::iterator const CircularBuffer<Data>::iterator::operator--(int) {
+template<typename Data, typename Alloc>
+typename CircularBuffer<Data, Alloc>::iterator const CircularBuffer<Data, Alloc>::iterator::operator--(int) {
     auto return_iterator = *this;
     *this -= 1;
     return return_iterator;
 }
 
-template<typename Data>
-typename CircularBuffer<Data>::iterator CircularBuffer<Data>::iterator::operator-(size_t i) const {
+template<typename Data, typename Alloc>
+typename CircularBuffer<Data, Alloc>::iterator CircularBuffer<Data, Alloc>::iterator::operator-(size_t i) const {
     auto return_iterator = *this;
     return return_iterator -= i;
 }
 
-template<typename Data>
-Data &CircularBuffer<Data>::iterator::operator*() {
+template<typename Data, typename Alloc>
+Data &CircularBuffer<Data, Alloc>::iterator::operator*() {
     return *cur_;
 }
 
-template<typename Data>
-Data &CircularBuffer<Data>::iterator::operator[](size_t i) {
+template<typename Data, typename Alloc>
+Data &CircularBuffer<Data, Alloc>::iterator::operator[](size_t i) {
     return *(*this + i);
 }
 
-template<typename T>
-auto CircularBuffer<T>::iterator::operator-(const iterator &iterator) const {
+template<typename Data, typename Alloc>
+auto CircularBuffer<Data, Alloc>::iterator::operator-(const iterator &iterator) const {
     return diff_from_start_ - iterator.diff_from_start_;
 }
 
-template<typename Data>
-const bool CircularBuffer<Data>::iterator::operator==(const iterator &iterator) const {
+template<typename Data, typename Alloc>
+const bool CircularBuffer<Data, Alloc>::iterator::operator==(const iterator &iterator) const {
     return diff_from_start_ == iterator.diff_from_start_;
 }
 
-template<typename Data>
-const bool CircularBuffer<Data>::iterator::operator!=(const iterator &iterator) const {
+template<typename Data, typename Alloc>
+const bool CircularBuffer<Data, Alloc>::iterator::operator!=(const iterator &iterator) const {
     return !(*this == iterator);
 }
 
-template<typename Data>
-const bool CircularBuffer<Data>::iterator::operator<(const iterator &iterator) const {
+template<typename Data, typename Alloc>
+const bool CircularBuffer<Data, Alloc>::iterator::operator<(const iterator &iterator) const {
     return (iterator - *this) > 0;
 }
 
-template<typename Data>
-const bool CircularBuffer<Data>::iterator::operator>(const iterator &iterator) const {
+template<typename Data, typename Alloc>
+const bool CircularBuffer<Data, Alloc>::iterator::operator>(const iterator &iterator) const {
     return iterator < *this;
 }
 

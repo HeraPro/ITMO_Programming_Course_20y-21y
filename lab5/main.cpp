@@ -1,7 +1,9 @@
 #include <iostream>
-#include <algorithm>
+#include <vector>
 
 #include "circular_buffer.hpp"
+
+using std::vector;
 
 template <typename Buffer>
 void PrintBuffer(Buffer&& buffer) {
@@ -37,8 +39,8 @@ void InsertSomeElements(Buffer&& buffer) {
 void TestIteratorsForPrint() {
   std::cout << "Testing (-reverse)Iterators..." << std::endl;
   size_t capacity = 4;
-  std::allocator<int> alloc; //testing with "own" alloc
-  CircularBuffer<int32_t> buffer(capacity, alloc);
+  std::allocator<int> alloc; //testing with "own" alloc_std
+  CircularBuffer<int, std::allocator<int>> buffer(capacity);
   InsertSomeElements(buffer);
   PrintBuffer(buffer);
   PrintReverseBuffer(buffer);
@@ -47,7 +49,7 @@ void TestIteratorsForPrint() {
 void TestIteratorsSTLAlgorithms() {
   std::cout << "Testing with some STL algorithms..." << std::endl;
   size_t capacity = 4;
-  CircularBuffer<int32_t> buffer(capacity);
+  CircularBuffer<int, std::allocator<int>> buffer(capacity);
   InsertSomeElements(buffer);
   std::cout << "  Original buffer:" << std::endl;
   PrintBuffer(buffer);
@@ -62,7 +64,7 @@ void TestIteratorsSTLAlgorithms() {
 void TestChangeCapacity() {
   std::cout << "Testing ChangeCapacity..." << std::endl;
   size_t capacity = 4;
-  CircularBuffer<int32_t> buffer(capacity);
+  CircularBuffer<int, std::allocator<int>> buffer(capacity);
   InsertSomeElements(buffer);
   std::cout << "  capacity = " << capacity << ": " << std::endl;
   PrintBuffer(buffer);
