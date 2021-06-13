@@ -6,11 +6,27 @@
 
 #IncludeRegexTransform: 
 
+/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/circular_buffer-impl.hpp
+memory
+-
+
+/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/circular_buffer.hpp
+cstddef
+-
+cstdint
+-
+iterator
+-
+memory
+-
+circular_buffer-impl.hpp
+/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/circular_buffer-impl.hpp
+
 /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/main.cpp
 iostream
 -
-algorithm
--
 vector
 -
+circular_buffer.hpp
+/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/circular_buffer.hpp
 

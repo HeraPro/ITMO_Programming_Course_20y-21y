@@ -44,6 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/."/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -66,6 +67,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/."/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -82,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/circular_buffer-impl.hpp">
+			<Option target="lab5"/>
+		</Unit>
+		<Unit filename="/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/circular_buffer.hpp">
+			<Option target="lab5"/>
+		</Unit>
 		<Unit filename="/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/main.cpp">
 			<Option target="lab5"/>
 		</Unit>

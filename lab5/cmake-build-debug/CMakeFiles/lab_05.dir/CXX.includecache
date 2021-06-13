@@ -25,8 +25,6 @@ circular_buffer-impl.hpp
 /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/main.cpp
 iostream
 -
-algorithm
--
 circular_buffer.hpp
 /home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab5/circular_buffer.hpp
 
