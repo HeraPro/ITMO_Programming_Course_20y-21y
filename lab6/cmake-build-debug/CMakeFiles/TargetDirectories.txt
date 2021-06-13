@@ -1,3 +1,0 @@
-/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab6/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab6/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/hera/CLionProjects/ITMO_Programming_Course_20y-21y/lab6/cmake-build-debug/CMakeFiles/lab6.dir
